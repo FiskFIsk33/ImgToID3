@@ -1,4 +1,4 @@
-import org.jaudiotagger;
+package org.jaudiotagger;
 
 class ImgToID3
 {
