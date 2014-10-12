@@ -1,1 +1,3 @@
 javac -classpath "D:\Documents\GitHub\ImgToID3\Source\lib\com\mpatric\mp3agic\*;." ImgToID3.java
+
+javac -classpath "D:\Documents\GitHub\ImgToID3\Source\lib\com\mpatric\mp3agic\*;." -sourcepath D:\Documents\GitHub\ImgToID3\Source Source\ImgToID3.java

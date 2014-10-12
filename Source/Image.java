@@ -1,5 +1,6 @@
-import java.nio.file.Files;
+import java.nio.file.*;
 import java.io.File;
+import java.io.IOException;
 
 public class Image
 {
@@ -9,17 +10,21 @@ public class Image
 	/**
 	*	Loads up the image
 	**/
-	public Image(String path)
+	public Image(String sPath) throws IOException
 	{
-		mimetype = Files.probeContentType(path);
-		imgFile = new File(path);
+
+			Path path = Paths.get(sPath);
+			mimetype = Files.probeContentType(path);
+			imgFile = new File(sPath);
+
 	}
 
 	/**
 	*	returns the image as byte[]
 	**/
-	public byte[] getImageData()
+	public byte[] getImageData() throws IOException
 	{
+
 		byte[] fileContent = Files.readAllBytes(imgFile.toPath());
 		return fileContent;
 	}
