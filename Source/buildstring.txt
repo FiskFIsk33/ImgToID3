@@ -1,0 +1,1 @@
+javac -classpath "D:\Documents\GitHub\ImgToID3\Source\lib\com\mpatric\mp3agic\*;." ImgToID3.java
