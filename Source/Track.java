@@ -1,5 +1,6 @@
 import com.mpatric.mp3agic.*;
 import java.io.IOException;
+import java.io.File;
 
 
 public class Track
@@ -39,22 +40,111 @@ public class Track
 		}
 	}
 
+	/*
+	*	Uses the predefined search rules (in Config) to find a suitable image
+	*/
+	public void findImage() throws IOException
+	{
+		
+		int found = 0;
+		String soughtName;
+		for(int i=0; (i < Config.getImgPathSize()) && (found == 0); i++) //iterate through Config image paths til image found
+		{
+			String path = Config.getImgPath(i);
+			if (path.lastIndexOf("/") != -1)		//if contains /, split folder name from file name
+			{
+				soughtName = path.substring(path.lastIndexOf("/") + 1, path.length());
+				path = path.substring(0, path.lastIndexOf("/"));
+			}else
+			{
+				soughtName = path;					//else, path is ""
+				path = "./";
+			}
+			File folder = new File(path);
+			//System.out.println(path + " path");
+			File[] listOfFiles = folder.listFiles();   //load all files in folder
+			//System.out.println("files: " + listOfFiles.length);
+
+			for (int j = 0; j < listOfFiles.length && found == 0; j++) {
+				if (listOfFiles[j].isFile())			//is file? (not folder)
+				{
+					//System.out.println("file: " + listOfFiles[j].getName()+ " sought: " + soughtName);
+					String filename = listOfFiles[j].getName();
+					if (filename.matches("(?i).*" + soughtName +".*"))//(regex) is this the file We're seeking (minus filetype)?
+					{
+						//System.out.println("file matched: " + listOfFiles[j].getName());
+						String extension = filename.substring(filename.lastIndexOf(".") + 1, filename.length()); //is the file an image?
+						if (Config.isImage(extension))
+						{
+							System.out.println(filename + " found for " + this.path);
+							found = 1;
+							loadImage(filename);
+							setImage();
+						}
+					}
+				}
+			}
+		}
+	}
 
 	/**
-	*	Loads up the image
+	*	Loads the image
 	**/
 	public void loadImage(String path) throws IOException
 	{
 		img = new Image(path);
 		System.out.println(img.getMimetype());
-
 	}
 
-	public void setImage() throws IOException, NotSupportedException
+	/**
+	*	writes image to file
+	**/
+	public void setImage()
 	{
 		ID3v2 tag = f.getId3v2Tag();
-		tag.setAlbumImage(img.getImageData(), img.getMimetype());
-		f.save(path);
+		try
+		{	
+			System.out.println("saving to " + path);
+			tag.setAlbumImage(img.getImageData(), img.getMimetype());		//save new file
+			f.save(path + "_tagged_ImgToID3");
 
+      		File ooldName = new File(path);									//move old file to temp name
+			File onewName = new File(path + "_temp_backup_ImgToID3");
+			if(ooldName.renameTo(onewName))				
+			{
+				System.out.println("oldfile Renamed");
+			}else {
+         		System.out.println("oldfile RenameError");
+      		}	
+
+			File noldName = new File(path + "_tagged_ImgToID3");			//move new file to orig filename
+			File nnewName = new File(path);
+			if(noldName.renameTo(nnewName))
+			{
+				System.out.println("newfile Renamed");
+			}else {
+         		System.out.println("newfile RenameError");
+      		}
+
+      		if(onewName.delete())
+			{
+				System.out.println("tmp Deleted");
+			}else {
+         		System.out.println("tmpDeletionError");
+      		}
+
+
+
+
+		}catch(IOException e)
+		{	System.out.println("IOException: " + e.getMessage());	//couldn't save new mp3
+		}catch(NotSupportedException e)
+		{	System.out.println("NotSupportedException: " + e.getMessage()); //couldn't save new mp3
+		}finally
+		{
+			File backup = new File(path + "_temp_backup_ImgToID3");
+			File orig = new File(path);
+			backup.renameTo(orig);
+		}
 	}
 }
