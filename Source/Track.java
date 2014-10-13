@@ -82,27 +82,37 @@ public class Track
 			File folder = new File(path);
 			//System.out.println(path + " path");
 			File[] listOfFiles = folder.listFiles();   //load all files in folder
-			//System.out.println("files: " + listOfFiles.length);
 
-			for (int j = 0; j < listOfFiles.length && found == 0; j++) {
-				if (listOfFiles[j].isFile())			//is file? (not folder)
-				{
-					//System.out.println("file: " + listOfFiles[j].getName()+ " sought: " + soughtName);
-					String filename = listOfFiles[j].getName();
-					if (filename.matches("(?i).*" + soughtName +".*"))//(regex) is this the file We're seeking (minus filetype)?
+			if(listOfFiles != null && listOfFiles.length != 0) //is the folder NOT empty?
+			{
+
+				for (int j = 0; j < listOfFiles.length && found == 0; j++) {
+					if (listOfFiles[j].isFile())			//is file? (not folder)
 					{
-						//System.out.println("file matched: " + listOfFiles[j].getName());
-						String extension = filename.substring(filename.lastIndexOf(".") + 1, filename.length()); //is the file an image?
-						if (Config.isImage(extension))
+						//System.out.println("file: " + listOfFiles[j].getName()+ " sought: " + soughtName);
+						String filename = listOfFiles[j].getName();
+						if (filename.matches("(?i).*" + soughtName +".*"))//(regex) is this the file We're seeking (minus filetype)?
 						{
-							System.out.println(path + filename + " found for " + this.path);
-							found = 1;
-							loadImage(path + filename);
-							setImage();
+							//System.out.println("file matched: " + listOfFiles[j].getName());
+							String extension = filename.substring(filename.lastIndexOf(".") + 1, filename.length()); //is the file an image?
+							if (Config.isImage(extension))
+							{
+								System.out.println(path + filename + " found for " + this.path);
+								found = 1;
+								loadImage(path + filename);
+								setImage();
+							}
 						}
 					}
 				}
+			}else
+			{
+				System.out.println("folder: "+path+" empty");
 			}
+		}
+		if (found == 0)
+		{
+			System.out.println("didnt find :/");
 		}
 	}
 
