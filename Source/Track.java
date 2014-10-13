@@ -19,6 +19,22 @@ public class Track
 		this.path = path;
 	}
 
+	public String getPath()
+	{
+		String retpath;
+		if (path.lastIndexOf("/") != -1)		//if contains /, split folder name from file name
+		{
+			retpath = path.substring(0, path.lastIndexOf("/"));
+		} else if (path.lastIndexOf("\\") != -1)
+		{
+			retpath = path.substring(0, path.lastIndexOf("\\"));
+		}else
+		{										//else, path is "here"
+			retpath = "./";
+		}
+		return retpath;
+	}
+
 	/**
 	*	Loads up the image
 	**/
@@ -47,19 +63,22 @@ public class Track
 	{
 		
 		int found = 0;
-		String soughtName;
+		//String soughtName;
 		for(int i=0; (i < Config.getImgPathSize()) && (found == 0); i++) //iterate through Config image paths til image found
 		{
 			String path = Config.getImgPath(i);
-			if (path.lastIndexOf("/") != -1)		//if contains /, split folder name from file name
+			String soughtName = Config.getImgName(i);
+			if (path == "./")
 			{
-				soughtName = path.substring(path.lastIndexOf("/") + 1, path.length());
-				path = path.substring(0, path.lastIndexOf("/"));
+				path = getPath()+"/";
 			}else
 			{
-				soughtName = path;					//else, path is ""
-				path = "./";
+				path = getPath()+path;
 			}
+
+			System.out.println("mp3 says Path path is: "+getPath());
+			System.out.println("looking in Path path: "+path+" for "+soughtName);
+
 			File folder = new File(path);
 			//System.out.println(path + " path");
 			File[] listOfFiles = folder.listFiles();   //load all files in folder
@@ -76,9 +95,9 @@ public class Track
 						String extension = filename.substring(filename.lastIndexOf(".") + 1, filename.length()); //is the file an image?
 						if (Config.isImage(extension))
 						{
-							System.out.println(filename + " found for " + this.path);
+							System.out.println(path + filename + " found for " + this.path);
 							found = 1;
-							loadImage(filename);
+							loadImage(path + filename);
 							setImage();
 						}
 					}

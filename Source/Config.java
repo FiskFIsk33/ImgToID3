@@ -1,4 +1,7 @@
 import java.util.*;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 
 
@@ -13,6 +16,75 @@ public class Config
 	*/
 	public static void init()
 	{
+		Properties prop = new Properties();
+		InputStream input = null;
+
+		try
+		{
+			input = new FileInputStream("config.cfg");
+			prop.load(input);
+
+			boolean done;
+
+			audioFileTypes = new ArrayList<String>();
+			String audiotypes = prop.getProperty("audio_filetypes");
+			done = false;
+			while(!done)
+			{
+				//System.out.println("ln 34: " +audiotypes.indexOf(";"));
+				audioFileTypes.add(audiotypes.substring(0, audiotypes.indexOf(";")));
+				audiotypes = audiotypes.substring(audiotypes.indexOf(";") + 1, audiotypes.length());
+				if(audiotypes.indexOf(";")<1)
+				{
+					done = true;
+				}
+			}
+
+
+			imageFileTypes = new ArrayList<String>();
+			String imgtypes = prop.getProperty("image_filetypes");
+			done = false;
+			while(!done)
+			{
+				//System.out.println("ln 34: " +imgtypes.indexOf(";"));
+				imageFileTypes.add(imgtypes.substring(0, imgtypes.indexOf(";")));
+				imgtypes = imgtypes.substring(imgtypes.indexOf(";") + 1, imgtypes.length());
+				if(imgtypes.indexOf(";")<1)
+				{
+					done = true;
+				}
+			}
+
+			imagePaths = new ArrayList<String>();
+			String imgpaths = prop.getProperty("image_paths");
+			done = false;
+			while(!done)
+			{
+				//System.out.println("ln 34: " +imgpaths.indexOf(";"));
+				imagePaths.add(imgpaths.substring(0, imgpaths.indexOf(";")));
+				imgpaths = imgpaths.substring(imgpaths.indexOf(";") + 1, imgpaths.length());
+				if(imgpaths.indexOf(";")<1)
+				{
+					done = true;
+				}
+			}
+			
+			System.out.println(""+audioFileTypes);
+			System.out.println(""+imageFileTypes);
+			System.out.println(""+imagePaths);
+		
+		}catch (IOException ex) {
+			ex.printStackTrace();
+		} finally {
+			if (input != null) {
+				try {
+					input.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		/*
 		audioFileTypes = new ArrayList<String>();
 		audioFileTypes.add("mp3");
 		System.out.println(""+audioFileTypes);
@@ -23,9 +95,10 @@ public class Config
 		System.out.println(""+imageFileTypes);
 
 		imagePaths = new ArrayList<String>();
-		imagePaths.add("test/Folder");
-		imagePaths.add("Folder");
+		//imagePaths.add("test/Folder");
+		imagePaths.add("Folfder");
 		imagePaths.add("");
+		*/
 	}
 
 	/*
@@ -71,6 +144,28 @@ public class Config
 
 	public static String getImgPath(int index)
 	{
-		return imagePaths.get(index);
+		String path = imagePaths.get(index);
+		if (path.lastIndexOf("/") != -1)		//if contains /, split folder name from file name
+		{
+			path = path.substring(0, path.lastIndexOf("/"));
+		}else									//else, path is "here"
+		{
+			path = "./";
+		}
+		return path;
+	}
+
+	public static String getImgName(int index)
+	{
+		String path = imagePaths.get(index);
+		String name;
+		if (path.lastIndexOf("/") != -1)		//if contains /, split folder name from file name
+		{
+			name = path.substring(path.lastIndexOf("/") + 1, path.length());
+		}else
+		{
+			name = path;					//else, path is ""
+		}
+		return name;
 	}
 }

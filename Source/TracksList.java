@@ -18,11 +18,16 @@ public class TracksList
 		for (int i = 0; i < listOfFiles.length; i++) {
 			if (listOfFiles[i].isFile())			//is file? (not folder)
 			{
-				String filename = listOfFiles[i].getName();
+				String filename = listOfFiles[i]+"";
 				if (Config.isAudio(filename))		//is audio file?
 				{
+					System.out.println("found: " + filename);
 					tracks.add(new Track(filename));	//add audio file to the list
 				}
+			}else if (listOfFiles[i].isDirectory()) //found folder, check it too
+			{
+				System.out.println("checking: " + listOfFiles[i]);
+				loadFiles(listOfFiles[i] + "");
 			}
 		}
 	}
