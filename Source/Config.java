@@ -34,7 +34,7 @@ public class Config
 				//System.out.println("ln 34: " +audiotypes.indexOf(";"));
 				audioFileTypes.add(audiotypes.substring(0, audiotypes.indexOf(";")));
 				audiotypes = audiotypes.substring(audiotypes.indexOf(";") + 1, audiotypes.length());
-				if(audiotypes.indexOf(";")<1)
+				if(audiotypes.indexOf(";")<0)
 				{
 					done = true;
 				}
@@ -46,10 +46,10 @@ public class Config
 			done = false;
 			while(!done)
 			{
-				//System.out.println("ln 34: " +imgtypes.indexOf(";"));
+				System.out.println("ln 49: " +imgtypes.indexOf(";"));
 				imageFileTypes.add(imgtypes.substring(0, imgtypes.indexOf(";")));
 				imgtypes = imgtypes.substring(imgtypes.indexOf(";") + 1, imgtypes.length());
-				if(imgtypes.indexOf(";")<1)
+				if(imgtypes.indexOf(";")<0)
 				{
 					done = true;
 				}
@@ -63,7 +63,7 @@ public class Config
 				//System.out.println("ln 34: " +imgpaths.indexOf(";"));
 				imagePaths.add(imgpaths.substring(0, imgpaths.indexOf(";")));
 				imgpaths = imgpaths.substring(imgpaths.indexOf(";") + 1, imgpaths.length());
-				if(imgpaths.indexOf(";")<1)
+				if(imgpaths.indexOf(";")<0)
 				{
 					done = true;
 				}
