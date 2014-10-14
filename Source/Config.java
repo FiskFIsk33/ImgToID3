@@ -147,7 +147,8 @@ public class Config
 		String path = imagePaths.get(index);
 		if (path.lastIndexOf("/") != -1)		//if contains /, split folder name from file name
 		{
-			path = path.substring(0, path.lastIndexOf("/"));
+			path = path.substring(0, path.lastIndexOf("/")+1);
+			System.out.println("getImgPath sending: "+path);
 		}else									//else, path is "here"
 		{
 			path = "./";
@@ -162,6 +163,7 @@ public class Config
 		if (path.lastIndexOf("/") != -1)		//if contains /, split folder name from file name
 		{
 			name = path.substring(path.lastIndexOf("/") + 1, path.length());
+			System.out.println("getImgName sending: "+name);
 		}else
 		{
 			name = path;					//else, path is ""
