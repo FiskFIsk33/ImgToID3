@@ -5,9 +5,9 @@ ImgToID3 is a simple program for batch tagging mp3 files with images found in th
 Running
 -------
 Edit the config.cfg to suit your needs:
-	-path to the folder to the music files (it will scan it and all subfolders)
-	-do you want to overwrite files already tagged with albumart?
-	-were do you want the program to look for images, relative to the mp3's?
+  - path to the folder to the music files (it will scan it and all subfolders)
+  - do you want to overwrite files already tagged with albumart?
+  - were do you want the program to look for images, relative to the mp3's?
 Then as a windows user just run RunOnWindows.bat
 for other os's, run ImgToID3.jar in a terminal.
 
