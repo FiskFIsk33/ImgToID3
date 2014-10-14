@@ -29,6 +29,11 @@ public class Image
 		return fileContent;
 	}
 
+	public String getPath()
+	{
+		return imgFile.getPath();
+	}
+
 	public String getMimetype()
 	{
 		return mimetype;

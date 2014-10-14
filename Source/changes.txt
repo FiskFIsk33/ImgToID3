@@ -1,0 +1,18 @@
+file: D:\Music\ImgToID3TEST - Copy\Bran Barr\[2000] Les Chroniques De Naerg\01 - Alba bheadarrach'smire ga'd fhaguil dubh (intro).mp3 image: D:\Music\ImgToID3TEST - Copy\Bran Barr\[2000] Les Chroniques De Naerg\cover.jpg
+file: D:\Music\ImgToID3TEST - Copy\Bran Barr\[2000] Les Chroniques De Naerg\02 - Ultraigh tri codacht'ruin.mp3 image: D:\Music\ImgToID3TEST - Copy\Bran Barr\[2000] Les Chroniques De Naerg\cover.jpg
+file: D:\Music\ImgToID3TEST - Copy\Bran Barr\[2000] Les Chroniques De Naerg\03 - The lamentable tragedy of Deirdra.mp3 image: D:\Music\ImgToID3TEST - Copy\Bran Barr\[2000] Les Chroniques De Naerg\cover.jpg
+file: D:\Music\ImgToID3TEST - Copy\Bran Barr\[2000] Les Chroniques De Naerg\04 - La complainte de Cairn.mp3 image: D:\Music\ImgToID3TEST - Copy\Bran Barr\[2000] Les Chroniques De Naerg\cover.jpg
+file: D:\Music\ImgToID3TEST - Copy\Bran Barr\[2000] Les Chroniques De Naerg\05 - Pride and malevolence.mp3 image: D:\Music\ImgToID3TEST - Copy\Bran Barr\[2000] Les Chroniques De Naerg\cover.jpg
+file: D:\Music\ImgToID3TEST - Copy\Bran Barr\[2000] Les Chroniques De Naerg\06 - Galeach'tran.mp3 image: D:\Music\ImgToID3TEST - Copy\Bran Barr\[2000] Les Chroniques De Naerg\cover.jpg
+file: D:\Music\ImgToID3TEST - Copy\Bran Barr\[2000] Les Chroniques De Naerg\07 - Bàas in the underworld.mp3 image: D:\Music\ImgToID3TEST - Copy\Bran Barr\[2000] Les Chroniques De Naerg\cover.jpg
+file: D:\Music\ImgToID3TEST - Copy\Bran Barr\[2000] Les Chroniques De Naerg\08 - Righ'beern.mp3 image: D:\Music\ImgToID3TEST - Copy\Bran Barr\[2000] Les Chroniques De Naerg\cover.jpg
+file: D:\Music\ImgToID3TEST - Copy\Bran Barr\[2010] Sidh\01 - Origin - The Birth of Fearg.mp3 image: D:\Music\ImgToID3TEST - Copy\Bran Barr\[2010] Sidh\[2010] Sidh.jpg
+file: D:\Music\ImgToID3TEST - Copy\Bran Barr\[2010] Sidh\02 - Celebration - Son of Nuadh Amh.mp3 image: D:\Music\ImgToID3TEST - Copy\Bran Barr\[2010] Sidh\[2010] Sidh.jpg
+file: D:\Music\ImgToID3TEST - Copy\Bran Barr\[2010] Sidh\03 - Fury - Exile of the Orphan.mp3 image: D:\Music\ImgToID3TEST - Copy\Bran Barr\[2010] Sidh\[2010] Sidh.jpg
+file: D:\Music\ImgToID3TEST - Copy\Bran Barr\[2010] Sidh\04 - Passage - The Curse of the Manimal.mp3 image: D:\Music\ImgToID3TEST - Copy\Bran Barr\[2010] Sidh\[2010] Sidh.jpg
+file: D:\Music\ImgToID3TEST - Copy\Bran Barr\[2010] Sidh\05 - The Call - Gathering the Tribes.mp3 image: D:\Music\ImgToID3TEST - Copy\Bran Barr\[2010] Sidh\[2010] Sidh.jpg
+file: D:\Music\ImgToID3TEST - Copy\Bran Barr\[2010] Sidh\06 - Rebirth - Morgan's Gift to Righ'Sidh.mp3 image: D:\Music\ImgToID3TEST - Copy\Bran Barr\[2010] Sidh\[2010] Sidh.jpg
+file: D:\Music\ImgToID3TEST - Copy\Bran Barr\[2010] Sidh\07 - Profedïez.mp3 image: D:\Music\ImgToID3TEST - Copy\Bran Barr\[2010] Sidh\[2010] Sidh.jpg
+file: D:\Music\ImgToID3TEST - Copy\Bran Barr\[2010] Sidh\08 - Revelation - In the Dominion of Kernunnos.mp3 image: D:\Music\ImgToID3TEST - Copy\Bran Barr\[2010] Sidh\[2010] Sidh.jpg
+file: D:\Music\ImgToID3TEST - Copy\Bran Barr\[2010] Sidh\09 - Journey - The Grand Quest for the Magical Acorn.mp3 image: D:\Music\ImgToID3TEST - Copy\Bran Barr\[2010] Sidh\[2010] Sidh.jpg
+file: D:\Music\ImgToID3TEST - Copy\Bran Barr\[2010] Sidh\10 - Ode Aux Lointains Souverains (Stille Volk cover).mp3 image: D:\Music\ImgToID3TEST - Copy\Bran Barr\[2010] Sidh\[2010] Sidh.jpg

@@ -16,10 +16,10 @@ class ImgToID3
 
 
 		System.out.println("test");
-		Config.init();
 		//Track testtrack = new Track("Thrones.mp3");
 		//testtrack.loadImage("Folder.jpg");
-		TracksList.loadFiles("./");
+		TracksList.loadFiles(Config.getMusicPath());
 		TracksList.loadImages();
+		TracksList.statusToTxt();
 	}
 }

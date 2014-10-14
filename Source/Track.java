@@ -6,6 +6,7 @@ import java.io.File;
 public class Track
 {
 	private Image img;
+	private boolean hasImage;
 	private Mp3File f;
 	private String path;
 
@@ -17,6 +18,21 @@ public class Track
 	{
 		loadFile(path);
 		this.path = path;
+		hasImage = false;
+	}
+
+	public String toString()
+	{
+		String string;
+		string = "file: " + path;
+		if (hasImage)
+		{
+			string = string + " image: " + img.getPath();
+		}else
+		{
+			string = string + " No Image Found";
+		}
+		return string;
 	}
 
 	public String getPath()
@@ -76,8 +92,8 @@ public class Track
 				path = getPath()+path;
 			}
 
-			System.out.println("mp3 says Path path is: "+getPath());
-			System.out.println("looking in Path path: "+path+" for "+soughtName);
+			//System.out.println("mp3 says Path path is: "+getPath());
+			//System.out.println("looking in Path path: "+path+" for "+soughtName);
 
 			File folder = new File(path);
 			//System.out.println(path + " path");
@@ -97,22 +113,22 @@ public class Track
 							String extension = filename.substring(filename.lastIndexOf(".") + 1, filename.length()); //is the file an image?
 							if (Config.isImage(extension))
 							{
-								System.out.println(path + filename + " found for " + this.path);
+								//System.out.println(path + filename + " found for " + this.path);
 								found = 1;
 								loadImage(path + filename);
-								setImage();
+								hasImage = true;
 							}
 						}
 					}
 				}
 			}else
 			{
-				System.out.println("folder: "+path+" empty");
+				//System.out.println("folder: "+path+" empty");
 			}
 		}
 		if (found == 0)
 		{
-			System.out.println("didnt find :/");
+			//System.out.println(":( didnt find for: " + this.path);
 		}
 	}
 
@@ -131,31 +147,23 @@ public class Track
 	public void setImage()
 	{
 		ID3v2 tag = f.getId3v2Tag();
+		String tempName = path + "_temp_backup_ImgToID3";
 		try
 		{	
 			System.out.println("saving to " + path);
 			tag.setAlbumImage(img.getImageData(), img.getMimetype());		//save new file
 			f.save(path + "_tagged_ImgToID3");
 
-      		File ooldName = new File(path);									//move old file to temp name
-			File onewName = new File(path + "_temp_backup_ImgToID3");
-			if(ooldName.renameTo(onewName))				
-			{
-				System.out.println("oldfile Renamed");
-			}else {
-         		System.out.println("oldfile RenameError");
-      		}	
 
-			File noldName = new File(path + "_tagged_ImgToID3");			//move new file to orig filename
-			File nnewName = new File(path);
-			if(noldName.renameTo(nnewName))
-			{
-				System.out.println("newfile Renamed");
-			}else {
-         		System.out.println("newfile RenameError");
-      		}
 
-      		if(onewName.delete())
+			if(!renameFile(path, tempName))				//move old file to temp name				
+			{ System.out.println("oldfile Rename failed!"); }
+
+			if(!renameFile(path + "_tagged_ImgToID3", path))				//move new file to orig filename				
+			{ System.out.println("newfile Rename failed!"); }
+
+			File backup = new File(tempName);
+      		if(backup.delete())
 			{
 				System.out.println("tmp Deleted");
 			}else {
@@ -171,9 +179,24 @@ public class Track
 		{	System.out.println("NotSupportedException: " + e.getMessage()); //couldn't save new mp3
 		}finally
 		{
-			File backup = new File(path + "_temp_backup_ImgToID3");
+			File backup = new File(tempName);
 			File orig = new File(path);
 			backup.renameTo(orig);
 		}
+	}
+
+	/*
+	*	Takes file at path source and renames to path dest.
+	*/
+	private boolean renameFile(String source, String dest)
+	{
+		boolean success = false;
+		File oldName = new File(source);								//move old file to temp name
+		File newName = new File(dest);
+		if(oldName.renameTo(newName))				
+		{
+			success = true;
+		}	
+		return success;
 	}
 }

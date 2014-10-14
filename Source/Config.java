@@ -7,14 +7,16 @@ import java.io.InputStream;
 
 public class Config
 {
+	private static String musicPath;
 	private static List<String> audioFileTypes;
 	private static List<String> imageFileTypes;
 	private static List<String> imagePaths;
+	private static boolean replace;
 	
 	/*
 	* initialize values
 	*/
-	public static void init()
+	static
 	{
 		Properties prop = new Properties();
 		InputStream input = null;
@@ -25,6 +27,10 @@ public class Config
 			prop.load(input);
 
 			boolean done;
+
+			musicPath = prop.getProperty("music_path");
+
+			replace = Boolean.parseBoolean(prop.getProperty("replace_if_present"));
 
 			audioFileTypes = new ArrayList<String>();
 			String audiotypes = prop.getProperty("audio_filetypes");
@@ -69,6 +75,8 @@ public class Config
 				}
 			}
 			
+			System.out.println("replace = "+replace);
+			System.out.println(""+musicPath);
 			System.out.println(""+audioFileTypes);
 			System.out.println(""+imageFileTypes);
 			System.out.println(""+imagePaths);
@@ -99,6 +107,11 @@ public class Config
 		imagePaths.add("Folfder");
 		imagePaths.add("");
 		*/
+	}
+
+	public static String getMusicPath()
+	{
+		return musicPath;
 	}
 
 	/*

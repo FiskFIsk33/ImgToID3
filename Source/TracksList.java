@@ -12,6 +12,7 @@ public class TracksList
 	**/
 	public static void loadFiles(String path)
 	{
+		System.out.println("looking for files in "+path);
 		File folder = new File(path);
 		File[] listOfFiles = folder.listFiles();  //load all files in folder
 		
@@ -37,5 +38,15 @@ public class TracksList
 		{
 			tracks.get(i).findImage();
 		}
+	}
+
+	public static void statusToTxt()
+	{
+		//ChangesFile txt = new ChangesFile();
+		for(Track track : tracks)
+		{
+			ChangesFile.writeLine(track.toString());
+		}
+		ChangesFile.open();
 	}
 }
