@@ -37,7 +37,7 @@ public class Config
 			done = false;
 			while(!done)
 			{
-				//System.out.println("ln 34: " +audiotypes.indexOf(";"));
+				////System.out.println("ln 34: " +audiotypes.indexOf(";"));
 				audioFileTypes.add(audiotypes.substring(0, audiotypes.indexOf(";")));
 				audiotypes = audiotypes.substring(audiotypes.indexOf(";") + 1, audiotypes.length());
 				if(audiotypes.indexOf(";")<0)
@@ -52,7 +52,7 @@ public class Config
 			done = false;
 			while(!done)
 			{
-				System.out.println("ln 49: " +imgtypes.indexOf(";"));
+				//System.out.println("ln 49: " +imgtypes.indexOf(";"));
 				imageFileTypes.add(imgtypes.substring(0, imgtypes.indexOf(";")));
 				imgtypes = imgtypes.substring(imgtypes.indexOf(";") + 1, imgtypes.length());
 				if(imgtypes.indexOf(";")<0)
@@ -66,7 +66,7 @@ public class Config
 			done = false;
 			while(!done)
 			{
-				//System.out.println("ln 34: " +imgpaths.indexOf(";"));
+				////System.out.println("ln 34: " +imgpaths.indexOf(";"));
 				imagePaths.add(imgpaths.substring(0, imgpaths.indexOf(";")));
 				imgpaths = imgpaths.substring(imgpaths.indexOf(";") + 1, imgpaths.length());
 				if(imgpaths.indexOf(";")<0)
@@ -75,11 +75,11 @@ public class Config
 				}
 			}
 			
-			System.out.println("replace = "+replace);
-			System.out.println(""+musicPath);
-			System.out.println(""+audioFileTypes);
-			System.out.println(""+imageFileTypes);
-			System.out.println(""+imagePaths);
+			//System.out.println("replace = "+replace);
+			//System.out.println(""+musicPath);
+			//System.out.println(""+audioFileTypes);
+			//System.out.println(""+imageFileTypes);
+			//System.out.println(""+imagePaths);
 		
 		}catch (IOException ex) {
 			ex.printStackTrace();
@@ -95,12 +95,12 @@ public class Config
 		/*
 		audioFileTypes = new ArrayList<String>();
 		audioFileTypes.add("mp3");
-		System.out.println(""+audioFileTypes);
+		//System.out.println(""+audioFileTypes);
 
 		imageFileTypes = new ArrayList<String>();
 		imageFileTypes.add("png");
 		imageFileTypes.add("jpg");
-		System.out.println(""+imageFileTypes);
+		//System.out.println(""+imageFileTypes);
 
 		imagePaths = new ArrayList<String>();
 		//imagePaths.add("test/Folder");
@@ -112,6 +112,11 @@ public class Config
 	public static String getMusicPath()
 	{
 		return musicPath;
+	}
+
+	public static boolean getReplace()
+	{
+		return replace;
 	}
 
 	/*
@@ -161,7 +166,7 @@ public class Config
 		if (path.lastIndexOf("/") != -1)		//if contains /, split folder name from file name
 		{
 			path = path.substring(0, path.lastIndexOf("/")+1);
-			System.out.println("getImgPath sending: "+path);
+
 		}else									//else, path is "here"
 		{
 			path = "./";
@@ -176,7 +181,7 @@ public class Config
 		if (path.lastIndexOf("/") != -1)		//if contains /, split folder name from file name
 		{
 			name = path.substring(path.lastIndexOf("/") + 1, path.length());
-			System.out.println("getImgName sending: "+name);
+
 		}else
 		{
 			name = path;					//else, path is ""

@@ -13,10 +13,13 @@ public class ChangesFile
 
 	static
 	{
-		path = "changes.txt";
+		path = "ChangesPreview.txt";
 		try{
 			out = new BufferedWriter(new FileWriter(path));
 			closed = false;
+			out.write("List of changes:");
+			out.newLine();
+			out.newLine();
 		}catch(IOException e){
 			System.out.println("ChangesFile.initializer IOException: " + e.toString());
 		}catch(ExceptionInInitializerError e){
@@ -36,7 +39,7 @@ public class ChangesFile
 
 	}
 
-	public static void open()
+	public static void open(boolean startnew)
 	{
 		if(closed == false)
 		{
@@ -52,6 +55,21 @@ public class ChangesFile
 		java.awt.Desktop.getDesktop().edit(file);
 		}catch(IOException e){
 			System.out.println("ChangesFile.open IOException: " + e.toString());
+		}
+		if(startnew)
+		{
+			path = "Changes.txt";
+			try{
+				out = new BufferedWriter(new FileWriter(path));
+				closed = false;
+				out.write("List of changes made:");
+				out.newLine();
+				out.newLine();
+			}catch(IOException e){
+				System.out.println("ChangesFile.initializer IOException: " + e.toString());
+			}catch(ExceptionInInitializerError e){
+				System.out.println("ChangesFile.initializer ExceptionInInitializerError: " + e.toString());
+			}
 		}
 	}
 }

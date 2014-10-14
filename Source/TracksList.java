@@ -12,7 +12,6 @@ public class TracksList
 	**/
 	public static void loadFiles(String path)
 	{
-		System.out.println("looking for files in "+path);
 		File folder = new File(path);
 		File[] listOfFiles = folder.listFiles();  //load all files in folder
 		
@@ -22,12 +21,10 @@ public class TracksList
 				String filename = listOfFiles[i]+"";
 				if (Config.isAudio(filename))		//is audio file?
 				{
-					System.out.println("found: " + filename);
 					tracks.add(new Track(filename));	//add audio file to the list
 				}
 			}else if (listOfFiles[i].isDirectory()) //found folder, check it too
 			{
-				System.out.println("checking: " + listOfFiles[i]);
 				loadFiles(listOfFiles[i] + "");
 			}
 		}
@@ -40,13 +37,22 @@ public class TracksList
 		}
 	}
 
-	public static void statusToTxt()
+	public static void writeImages()
+	{
+		for(int i = 0; i < tracks.size(); i++)
+		{
+			tracks.get(i).writeImage();
+		}
+		ChangesFile.open(false);
+	}
+
+	public static void previewToTxt()
 	{
 		//ChangesFile txt = new ChangesFile();
 		for(Track track : tracks)
 		{
 			ChangesFile.writeLine(track.toString());
 		}
-		ChangesFile.open();
+		ChangesFile.open(true);
 	}
 }

@@ -1,0 +1,2 @@
+Main-Class: ImgToID3
+Class-Path: lib/com/mpatric/mp3agic/mp3agic-0.8.3.jar
