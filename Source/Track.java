@@ -8,15 +8,14 @@ public class Track
 {
 	private Image img;
 	private int hasImage; //0 for none found, 1 for found, 2 for already had
-	//private Mp3File f;
-	private ID3v2 tag;
+	private Mp3File f;
 	private String path;
 
 	/**
 	*	This constructor loads up the specified mp3 file
 	*	and adds an id3v2 tag if nonexistent
 	**/
-	public Track(String path)
+	public Track(String path) throws Exception
 	{
 		loadFile(path);
 		this.path = path;
@@ -59,12 +58,11 @@ public class Track
 	/**
 	*	Loads up the image
 	**/
-	public void loadFile(String path)
+	public void loadFile(String path) throws Exception
 	{
-		try
-		{
+
 		f = new Mp3File(path);
-		}catch(IOException e){}catch(UnsupportedTagException e){}catch(InvalidDataException e){}
+
 		ID3v2 id3v2Tag;
 		if (f.hasId3v2Tag())
 		{

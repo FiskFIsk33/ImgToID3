@@ -22,12 +22,16 @@ public class TracksList
 			{
 				//if (file.isFile())			//is file? (not folder)
 				//{
-					String filename = file+"";
-					if (Config.isAudio(filename))		//is audio file?
-					{
+				String filename = file+"";
+				if (Config.isAudio(filename))		//is audio file?
+				{
+					try{
 						tracks.add(new Track(filename));	//add audio file to the list
 						System.out.println("loaded: " + ++fileNumber + " files");
+					}catch(Exception e){
+						System.out.println("Error, not loaded: " + filename );
 					}
+				}
 				//}
 				else if (file.isDirectory()) //found folder, check it too
 				{
@@ -38,9 +42,9 @@ public class TracksList
 	}
 	public static void loadImages() throws IOException
 	{
+		int fileProcessing = 0;
 		for(Track track : tracks)
 		{
-			int fileProcessing = 0;
 			System.out.println("finding image for file: " + ++fileProcessing + " of " + fileNumber);
 			track.findImage();
 		}
