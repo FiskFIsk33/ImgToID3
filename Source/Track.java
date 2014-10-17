@@ -8,7 +8,8 @@ public class Track
 {
 	private Image img;
 	private int hasImage; //0 for none found, 1 for found, 2 for already had
-	private Mp3File f;
+	//private Mp3File f;
+	private ID3v2 tag;
 	private String path;
 
 	/**
@@ -173,7 +174,7 @@ public class Track
 			String tempName = path + "_temp_backup_ImgToID3";
 			try
 			{	
-				System.out.println("saving to " + path);
+				//System.out.println("saving to " + path);
 				tag.setAlbumImage(img.getImageData(), img.getMimetype());		//save new file
 				f.save(path + "_tagged_ImgToID3");
 	
@@ -208,7 +209,7 @@ public class Track
 			}
 		}else
 		{
-			System.out.println("Skipping: " + path);
+			//System.out.println("Skipping: " + path);
 			ChangesFile.writeLine("Skipped: " + path);
 		}
 	}

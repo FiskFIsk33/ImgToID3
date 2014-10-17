@@ -5,7 +5,8 @@ import java.util.*;
 
 public class TracksList
 {
-	private static List<Track> tracks = new ArrayList<Track>();
+	private static List<Track> tracks = new LinkedList<Track>();
+	private static int fileNumber = 0;
 
 	/**
 	*	Load Tracks Into List
@@ -14,34 +15,44 @@ public class TracksList
 	{
 		File folder = new File(path);
 		File[] listOfFiles = folder.listFiles();  //load all files in folder
-		
-		for (int i = 0; i < listOfFiles.length; i++) {
-			if (listOfFiles[i].isFile())			//is file? (not folder)
+
+		if (listOfFiles != null && listOfFiles.length > 0)
+		{
+			for(File file:listOfFiles)
 			{
-				String filename = listOfFiles[i]+"";
-				if (Config.isAudio(filename))		//is audio file?
+				//if (file.isFile())			//is file? (not folder)
+				//{
+					String filename = file+"";
+					if (Config.isAudio(filename))		//is audio file?
+					{
+						tracks.add(new Track(filename));	//add audio file to the list
+						System.out.println("loaded: " + ++fileNumber + " files");
+					}
+				//}
+				else if (file.isDirectory()) //found folder, check it too
 				{
-					tracks.add(new Track(filename));	//add audio file to the list
+					loadFiles(file + "");
 				}
-			}else if (listOfFiles[i].isDirectory()) //found folder, check it too
-			{
-				loadFiles(listOfFiles[i] + "");
 			}
 		}
 	}
 	public static void loadImages() throws IOException
 	{
-		for(int i = 0; i < tracks.size(); i++)
+		for(Track track : tracks)
 		{
-			tracks.get(i).findImage();
+			int fileProcessing = 0;
+			System.out.println("finding image for file: " + ++fileProcessing + " of " + fileNumber);
+			track.findImage();
 		}
 	}
 
 	public static void writeImages()
 	{
-		for(int i = 0; i < tracks.size(); i++)
+		int fileProcessing = 0;
+		for(Track track : tracks)
 		{
-			tracks.get(i).writeImage();
+			System.out.println("Processing: " + ++fileProcessing + " of " + fileNumber);
+			track.writeImage();
 		}
 		ChangesFile.open(false);
 	}

@@ -49,7 +49,7 @@ public class ChangesFile
 			}catch(IOException e){
 				System.out.println("ChangesFile.open IOException: " + e.toString());
 			}
-		}
+		}else{System.out.println("changesfile error");}
 		try{
 		File file = new File(path);
 		java.awt.Desktop.getDesktop().edit(file);
