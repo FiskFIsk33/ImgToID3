@@ -1,3 +1,3 @@
 @echo off
-java -jar ImgToID3.jar
+java -jar -Xmx8g ImgToID3.jar
 pause
